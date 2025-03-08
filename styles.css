@@ -260,7 +260,7 @@ body {
 .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 120px;
 }
 
 .project {
@@ -518,4 +518,43 @@ footer {
     blockquote p {
         font-size: 24px;
     }
+}
+
+/* 专业领域部分 */
+.profession-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.profession-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.profession-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profession-card i {
+    font-size: 48px;
+    color: var(--apple-blue);
+    margin-bottom: 25px;
+}
+
+.profession-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.profession-card p {
+    font-size: 17px;
+    color: var(--apple-text-gray);
+    line-height: 1.6;
 } 
