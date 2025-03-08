@@ -8,12 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听滚动事件
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            // 滚动超过50px时，导航栏背景变得更不透明
-            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         } else {
-            // 回到顶部时，导航栏恢复原样
-            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
             nav.style.boxShadow = 'none';
         }
     });
@@ -24,15 +20,38 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            if (targetId === '#') return;
             
+            const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 60, // 减去导航栏高度
+                    top: targetElement.offsetTop - 60,
                     behavior: 'smooth'
                 });
             }
         });
+    });
+    
+    // 添加淡入效果
+    const fadeInElements = document.querySelectorAll('.section');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+                fadeInObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    fadeInElements.forEach(element => {
+        element.style.opacity = 0;
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeInObserver.observe(element);
     });
     
     // 添加表单提交事件

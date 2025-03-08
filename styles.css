@@ -1,11 +1,12 @@
-/* 全局样式 */
+/* 基础样式 */
 :root {
-    --apple-white: #ffffff;
     --apple-black: #1d1d1f;
+    --apple-white: #ffffff;
     --apple-gray: #f5f5f7;
     --apple-blue: #0071e3;
-    --apple-light-gray: #86868b;
-    --apple-border: #d2d2d7;
+    --apple-blue-hover: #0077ed;
+    --apple-text-gray: #86868b;
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -19,39 +20,16 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--apple-black);
     line-height: 1.5;
     background-color: var(--apple-white);
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* 容器样式 */
-.section-content {
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px;
-}
-
-.section-title {
-    font-size: 48px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 60px;
+    padding: 0 20px;
 }
 
 /* 导航栏 */
@@ -71,19 +49,21 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 44px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    height: 44px;
 }
 
 .logo a {
-    font-size: 24px;
+    font-size: 20px;
     color: var(--apple-black);
+    text-decoration: none;
 }
 
 .nav-links {
     display: flex;
+    list-style: none;
 }
 
 .nav-links li {
@@ -91,27 +71,26 @@ img {
 }
 
 .nav-links a {
-    font-size: 14px;
     color: var(--apple-black);
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: var(--transition);
 }
 
 .nav-links a:hover {
-    color: var(--apple-blue);
+    opacity: 1;
 }
 
 /* 英雄区域 */
 .hero {
     height: 100vh;
-    background-color: var(--apple-black);
-    color: var(--apple-white);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x1080');
-    background-size: cover;
-    background-position: center;
+    background-color: var(--apple-white);
+    padding-top: 44px;
 }
 
 .hero-content {
@@ -119,22 +98,18 @@ img {
     padding: 0 20px;
 }
 
-.hero h1 {
+.hero-title {
     font-size: 56px;
     font-weight: 600;
     margin-bottom: 10px;
+    letter-spacing: -0.5px;
 }
 
-.hero h2 {
+.hero-subtitle {
     font-size: 28px;
     font-weight: 400;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 21px;
+    color: var(--apple-text-gray);
     margin-bottom: 30px;
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .button {
@@ -143,329 +118,373 @@ img {
     color: white;
     padding: 12px 24px;
     border-radius: 980px;
+    text-decoration: none;
     font-size: 17px;
     font-weight: 400;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .button:hover {
-    background-color: #0077ED;
-    transform: scale(1.02);
+    background-color: var(--apple-blue-hover);
 }
 
-/* 关于部分 */
-.about-section {
-    background-color: var(--apple-white);
+/* 通用部分样式 */
+.section {
+    padding: 100px 0;
 }
 
-.about-grid {
+.section-gray {
+    background-color: var(--apple-gray);
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: -0.5px;
+}
+
+.large-text {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+/* 关于我部分 */
+.about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
 }
 
-.about-text .large-text {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
 .about-text p {
-    font-size: 17px;
     margin-bottom: 20px;
-    color: var(--apple-black);
+    font-size: 17px;
 }
 
-.highlight {
-    color: var(--apple-blue);
-}
-
-.about-image img {
-    border-radius: 12px;
+.image-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 125%; /* 4:5 比例 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* 技能部分 */
-.skills-section {
-    background-color: var(--apple-gray);
+.placeholder-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(120deg, #e0e0e0 30%, #f0f0f0 38%, #f0f0f0 40%, #e0e0e0 48%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    animation: shine 1.5s infinite;
 }
 
+@keyframes shine {
+    to {
+        background-position: -100% 0;
+    }
+}
+
+/* 技能部分 */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 30px;
 }
 
 .skill-card {
-    background-color: var(--apple-white);
-    padding: 40px 30px;
+    background-color: white;
+    padding: 30px;
     border-radius: 18px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
 }
 
 .skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .skill-card i {
-    font-size: 48px;
+    font-size: 36px;
     color: var(--apple-blue);
     margin-bottom: 20px;
 }
 
 .skill-card h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .skill-card p {
     font-size: 16px;
-    color: var(--apple-light-gray);
+    color: var(--apple-text-gray);
 }
 
 /* 项目部分 */
-.projects-section {
-    background-color: var(--apple-white);
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
 }
 
-.project-item {
+.project {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
-    margin-bottom: 100px;
 }
 
-.project-item.reverse {
-    grid-template-columns: 1fr 1fr;
+.project.reverse {
     direction: rtl;
 }
 
-.project-item.reverse .project-info {
+.project.reverse .project-info {
     direction: ltr;
 }
 
-.project-image img {
-    border-radius: 12px;
+.project-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 比例 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
 }
 
-.project-image:hover img {
-    transform: scale(1.02);
+.placeholder-image.dark {
+    background-color: #333;
+    background-image: linear-gradient(120deg, #444 30%, #333 38%, #333 40%, #444 48%);
+}
+
+.placeholder-image.light {
+    background-color: #f8f8f8;
+    background-image: linear-gradient(120deg, #f0f0f0 30%, #f8f8f8 38%, #f8f8f8 40%, #f0f0f0 48%);
 }
 
 .project-info h3 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .project-info p {
     font-size: 17px;
+    color: var(--apple-text-gray);
     margin-bottom: 20px;
-    color: var(--apple-light-gray);
 }
 
-.learn-more {
+.link-arrow {
     color: var(--apple-blue);
+    text-decoration: none;
     font-size: 17px;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.3s ease;
+    font-weight: 400;
+    transition: var(--transition);
 }
 
-.learn-more i {
+.link-arrow i {
     margin-left: 5px;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
-.learn-more:hover {
-    color: #0077ED;
+.link-arrow:hover {
+    color: var(--apple-blue-hover);
 }
 
-.learn-more:hover i {
-    transform: translateX(5px);
+.link-arrow:hover i {
+    transform: translateX(3px);
 }
 
 /* 引用部分 */
 .quote-section {
-    background-color: var(--apple-black);
-    color: var(--apple-white);
+    text-align: center;
     padding: 120px 0;
 }
 
 blockquote {
-    text-align: center;
     max-width: 800px;
     margin: 0 auto;
 }
 
 blockquote p {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.3;
     margin-bottom: 20px;
+    letter-spacing: -0.5px;
 }
 
 blockquote cite {
-    font-size: 18px;
+    font-size: 17px;
+    color: var(--apple-text-gray);
     font-style: normal;
-    color: rgba(255, 255, 255, 0.7);
 }
 
 /* 联系部分 */
-.contact-section {
-    background-color: var(--apple-gray);
-}
-
-.contact-grid {
+.contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
+    align-items: start;
 }
 
-.contact-info p {
-    font-size: 17px;
-    margin-bottom: 20px;
-}
-
-.contact-list {
+.contact-methods {
     margin-top: 30px;
 }
 
-.contact-list li {
+.contact-method {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    font-size: 17px;
+    margin-bottom: 20px;
 }
 
-.contact-list i {
+.contact-method i {
+    font-size: 24px;
     color: var(--apple-blue);
     margin-right: 15px;
-    font-size: 20px;
+}
+
+.contact-method p {
+    font-size: 17px;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: var(--apple-light-gray);
-}
-
-.form-group input,
-.form-group textarea {
+input, textarea {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--apple-border);
-    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    font-size: 17px;
     font-family: inherit;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+    transition: var(--transition);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+input:focus, textarea:focus {
     outline: none;
     border-color: var(--apple-blue);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
 }
 
 /* 页脚 */
 footer {
-    background-color: var(--apple-white);
+    background-color: var(--apple-gray);
     padding: 40px 0;
-    border-top: 1px solid var(--apple-border);
+    font-size: 14px;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.footer-links {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.footer-links a {
-    margin: 0 15px;
-    font-size: 24px;
-    color: var(--apple-light-gray);
-    transition: color 0.3s ease;
+.copyright p {
+    color: var(--apple-text-gray);
 }
 
-.footer-links a:hover {
-    color: var(--apple-blue);
+.social-links a {
+    color: var(--apple-text-gray);
+    margin-left: 20px;
+    font-size: 20px;
+    transition: var(--transition);
 }
 
-.copyright {
-    font-size: 12px;
-    color: var(--apple-light-gray);
+.social-links a:hover {
+    color: var(--apple-black);
 }
 
 /* 响应式设计 */
 @media (max-width: 992px) {
-    .section-title {
-        font-size: 36px;
-    }
-    
-    .hero h1 {
+    .hero-title {
         font-size: 48px;
     }
     
-    .hero h2 {
+    .hero-subtitle {
         font-size: 24px;
     }
     
-    .about-grid,
-    .project-item,
-    .project-item.reverse,
-    .contact-grid {
+    .section-title {
+        font-size: 40px;
+    }
+    
+    .large-text {
+        font-size: 28px;
+    }
+    
+    .about-content, 
+    .project, 
+    .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
     }
     
-    .project-item.reverse {
+    .project.reverse {
         direction: ltr;
-    }
-    
-    .about-image {
-        order: -1;
     }
 }
 
 @media (max-width: 768px) {
+    .hero-title {
+        font-size: 40px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .section {
+        padding: 80px 0;
+    }
+    
+    blockquote p {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 576px) {
     .nav-links {
         display: none;
     }
     
-    .section-content {
-        padding: 60px 20px;
+    .hero-title {
+        font-size: 32px;
     }
     
-    .hero h1 {
-        font-size: 36px;
-    }
-    
-    .hero p {
+    .hero-subtitle {
         font-size: 18px;
     }
     
-    .about-text .large-text {
-        font-size: 28px;
+    .large-text {
+        font-size: 24px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
     }
     
     blockquote p {
