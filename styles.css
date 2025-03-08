@@ -93,6 +93,9 @@ body {
     padding-top: 44px;
     position: relative;
     color: var(--apple-white);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
 }
 
 .hero-content {
